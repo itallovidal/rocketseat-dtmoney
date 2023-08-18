@@ -17,6 +17,16 @@ export const Summary = styled.section`
   div:nth-child(3) svg{
     color: white;
   }
+  
+  @media(max-width: 920px){
+    flex-wrap: wrap;
+    transform: translateY(-20%);
+  }
+
+  @media(max-width: 500px){
+    flex-wrap: wrap;
+    transform: translateY(-5%);
+  }
 `
 
 interface SummaryCardProps{
@@ -32,7 +42,6 @@ export const SummaryCard = styled.div<SummaryCardProps>`
   
   span{
     font-size: 2rem;
-    text-transform: uppercase;
   }
   
   div{

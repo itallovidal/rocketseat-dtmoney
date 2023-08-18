@@ -1,8 +1,8 @@
 import styled, {css} from "styled-components";
-import {InputBase} from "../../Home.styled.ts";
+import {InputBase, show} from "../../Home.styled.ts";
 
 interface TransferType {
-    Transfertype: 'Entrada' | 'Saída'
+    $Transfertype: 'Entrada' | 'Saída'
 }
 
 export const Input = styled(InputBase)`
@@ -14,7 +14,8 @@ export const Input = styled(InputBase)`
 export const Error = styled.span`
   margin-block: .4rem;
   color: ${({theme})=> theme['red-300']};
-  
+  opacity: 0;
+  animation: ${show} 400ms forwards;
   span{
     color: white;
   }
@@ -40,8 +41,8 @@ export const TransferName = styled.label<TransferType>`
   border-radius: 6px;
 
   svg{
-    color: ${({theme, Transfertype})=>{
-      return Transfertype === 'Entrada'
+    color: ${({theme, $Transfertype})=>{
+      return $Transfertype === 'Entrada'
               ? theme['green-300']
               : theme['red-300']
     }};
@@ -58,8 +59,8 @@ export const TransferTypeWrapper = styled.div<TransferType>`
 
   
   input:checked + label{
-    background: ${({theme, Transfertype})=>{ 
-      return Transfertype === 'Entrada' 
+    background: ${({theme, $Transfertype})=>{ 
+      return $Transfertype === 'Entrada' 
           ? theme['green-300']
           : theme['red-300']
     }};

@@ -1,11 +1,23 @@
 import styled from "styled-components";
-import {Button, InputBase} from "../../Home.styled.ts";
+import {Button, InputBase, show} from "../../Home.styled.ts";
 import {darkTheme} from "../../../../styles/theme.ts";
+import {TransactionType} from "../../../../utilities/API.ts";
 
-export const SearchWrapper = styled.section`
+export const SearchWrapper = styled.form`
   display: flex;
   width: 100%;
   gap: 1rem;
+  position: relative;
+`
+
+export const Error = styled.span`
+  opacity: 0;
+  animation: ${show} 400ms forwards;
+  width: 100%;
+  position: absolute;
+  bottom: calc(100% + .8rem);
+  left: .8rem;
+  color: ${({theme})=> theme['red-300']};
 `
 
 export const SearchButton = styled(Button)`
@@ -25,7 +37,7 @@ export const Input = styled(InputBase)``
 
 
 export const TransactionTableWrapper = styled.section`
-  margin-top: 2rem;
+  margin-block: 2rem;
   table{
     width: 100%;
   }
@@ -59,19 +71,25 @@ export const TransactionTableWrapper = styled.section`
   }
 
   table tbody tr td:nth-child(4){
-    flex: 1;
+    flex: 2;
+  }
+  
+  @media(max-width: 550px){
+    table tbody tr{
+      flex-direction: column;
+    }
   }
 `
 
 interface TransactionTypeProps{
-    transactionType: 'income' | 'outcome'
+    $transactionType: TransactionType
 }
 
 const TransactionTypeColors={
     'income': darkTheme['green-300'],
     'outcome': darkTheme['red-300']
 } as const
-export const TransactionType = styled.span<TransactionTypeProps>`
-  color: ${({transactionType})=> TransactionTypeColors[transactionType]} ;
+export const TransactionValue = styled.span<TransactionTypeProps>`
+  color: ${({$transactionType})=> TransactionTypeColors[$transactionType]} ;
   
 `

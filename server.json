@@ -1,0 +1,36 @@
+{
+  "transactions": [
+    {
+      "type": "income",
+      "price": 140,
+      "description": "Comer Fora",
+      "category": "Alimentação",
+      "createdAt": "2023-08-18T16:38:23.036Z",
+      "id": 1
+    },
+    {
+      "type": "income",
+      "price": 20,
+      "description": "Comer Dentro",
+      "category": "Alimentação",
+      "createdAt": "2023-08-18T16:38:35.948Z",
+      "id": 2
+    },
+    {
+      "type": "outcome",
+      "price": 123231,
+      "description": "Cursinho adoadoado",
+      "category": "qwaeq",
+      "createdAt": "2023-08-18T16:38:51.481Z",
+      "id": 3
+    },
+    {
+      "type": "outcome",
+      "price": 1312,
+      "description": "akwjhdakwd",
+      "category": "kljhdaw",
+      "createdAt": "2023-08-18T16:48:54.711Z",
+      "id": 4
+    }
+  ]
+}

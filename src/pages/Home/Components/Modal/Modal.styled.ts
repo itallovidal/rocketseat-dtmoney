@@ -1,13 +1,27 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
-import {Button} from "../../Home.styled.ts";
+import {Button, show} from "../../Home.styled.ts";
+import {Error as ErrorBase} from '../Input/Input.styled.ts'
+
+const ContentAnimation = keyframes`
+100%{
+  top: calc(50% - 1rem);
+  opacity: 1;
+}
+`
 
 export const Overlay = styled(Dialog.Overlay)`
   width: 100%;
   height: 100vh;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.50);
+  background: rgba(0, 0, 0, 0.60);
+  animation: ${show} 400ms forwards;
+  opacity: 0;
+`
+
+export const Error = styled(ErrorBase)`
+width: 100%
 `
 
 export const Content = styled(Dialog.Content)`
@@ -15,7 +29,7 @@ export const Content = styled(Dialog.Content)`
   width: 95%;
   max-width: 30rem;
   left: 50%;
-  top: 50%;
+  top: calc(50% + 1rem);
   transform: translate(-50%, -50% );
   display: flex;
   flex-direction: column;
@@ -23,6 +37,8 @@ export const Content = styled(Dialog.Content)`
   border-radius: 6px;
   padding: 2rem;
   background: ${({theme})=> theme['gray-800']};
+  opacity: 0;
+  animation: ${ContentAnimation} 400ms 200ms forwards;
   
   form{
     display: flex;
@@ -61,4 +77,9 @@ export const WrapperTransferTypeButton = styled.div`
   display: flex;
   gap: 1rem;
   width: 100%;
+  flex-wrap: wrap;
+  
+  div{
+    width: calc(50% - 1rem);
+  }
 `

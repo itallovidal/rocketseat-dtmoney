@@ -1,4 +1,10 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
+
+export const show = keyframes`
+  100%{
+    opacity: 1;
+  }
+`
 
 export const Button = styled.button`
   padding: 0 1.2rem;
@@ -9,7 +15,12 @@ export const Button = styled.button`
   cursor: pointer;
   transition: 400ms;
   
-  &:hover{
+  &:disabled{
+    opacity: .4;
+    cursor: wait;
+  }
+  
+  &:not(&:hover){
     background: ${({theme})=> theme['green-300']};
     color: white;
   }
