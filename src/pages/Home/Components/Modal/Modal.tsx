@@ -30,20 +30,23 @@ function Modal({trigger} : {trigger: ReactNode}) {
 
     async function handleSubmitQuery(data: ModalSchema){
         const {description, price, category, transferType} = data
-        const response = await Api.post('transactions', {
-            type: transferType,
-            price, description,
-            category,
-            createdAt: new Date()
-        })
 
-        if(response.status === 201){
-            addTransaction(response.data)
-            closeButton.current!.click()
-            return
+        try{
+            const response = await Api.post('transactions', {
+                type: transferType,
+                price, description,
+                category,
+                createdAt: new Date()
+            })
+
+            if(response.status === 201){
+                addTransaction(response.data)
+                closeButton.current!.click()
+                return
+            }
+        }catch (e){
+            window.alert('Conexão com as transações não foi estabelecida, você ligou o JSON-Server? Veja o Readme para mais informações.')
         }
-
-        console.log('algo deu errado.')
     }
 
 

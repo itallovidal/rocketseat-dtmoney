@@ -1,5 +1,5 @@
 import React, {ReactNode} from "react";
-import {getTransations, Transaction} from "../utilities/API.ts";
+import {getTransactions, Transaction} from "../utilities/API.ts";
 
 function discoverType<T>(data: unknown) : data is T{
     return !!data;
@@ -59,7 +59,6 @@ function GlobalContextProvider({children} : {children: ReactNode}) {
         })
     }
 
-    console.log(transactionData)
 
     function addTransaction(data: Transaction){
         dispatch({
@@ -70,9 +69,13 @@ function GlobalContextProvider({children} : {children: ReactNode}) {
 
 
     React.useEffect(()=>{
-        getTransations().then((data)=>{
-            setTransactions(data)
-        })
+            getTransactions().then((data)=>{
+                setTransactions(data)
+            })
+            .catch(()=>{
+                window.alert('Conexão com as transações não foi estabelecida.\nVocê ligou o JSON-Server?' +
+                    '\n\nVeja o Readme para mais informações.')
+            })
     }, [])
 
 

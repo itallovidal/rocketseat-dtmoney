@@ -4,7 +4,7 @@ import {GlobalWrapper} from "../../Home.styled.ts";
 import {Input} from "./TransactionsList.styled.ts";
 import React from "react";
 import {GlobalContext} from "../../../../contexts/GlobalContextProvider.tsx";
-import {DateFormatter, getTransations, MoneyFormatter} from "../../../../utilities/API.ts";
+import {DateFormatter, getTransactions, MoneyFormatter} from "../../../../utilities/API.ts";
 import {useForm} from "react-hook-form";
 import * as z from 'zod'
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -32,7 +32,7 @@ function TransactionsList() {
     React.useEffect(()=>{
         if(isDirty){
             if (queryStatus.length === 0 ){
-                getTransations().then((data)=>{
+                getTransactions().then((data)=>{
                     clearErrors('query')
                     setTransactions(data)
                 })
@@ -43,7 +43,7 @@ function TransactionsList() {
 
     function handleSubmitQuery({query}: {query: string}){
         setIsLoading(true)
-        getTransations(query).then((data)=>{
+        getTransactions(query).then((data)=>{
             setIsLoading(false)
             setTransactions(data)
         })
